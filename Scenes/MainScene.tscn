@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Images/UI/Top UI v 2.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/UI/Bottom UI v 2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/UI/background 2.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/grid.gd" type="Script" id=4]
+
+[node name="GameWindow" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopUI" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomUI" type="TextureRect" parent="."]
+margin_top = 928.0
+margin_right = 576.0
+margin_bottom = 1020.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grid" type="Node2D" parent="."]
+script = ExtResource( 4 )
+width = 8
+height = 10
+x_start = 64
+y_start = 800
+offset = 64
+y_offset = 3
+
+[node name="destoryTimer" type="Timer" parent="."]
+wait_time = 0.428
+one_shot = true
+
+[node name="collapseTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="refill" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+[connection signal="timeout" from="destoryTimer" to="grid" method="_on_destoryTimer_timeout"]
+[connection signal="timeout" from="collapseTimer" to="grid" method="_on_collapseTimer_timeout"]
+[connection signal="timeout" from="refill" to="grid" method="_on_refill_timeout"]
