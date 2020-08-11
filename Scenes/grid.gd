@@ -32,7 +32,7 @@ var finalTouch = Vector2(0, 0);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	state = move; 
+	#state = move; 
 	create2DArray(); 
 	randomize(); 
 	spawnPieces(); 
@@ -139,7 +139,7 @@ func isPieceInGrid(column, row):
 	return column >= 0 && column < width && row >= 0 and row < height; 
 			
 func findMatches():
-	state = wait; 
+	#state = wait; 
 	for i in width:
 		for j in height:
 			if allPieces[i][j] != null and allPieces[i][j].getMatched() == false:
@@ -190,8 +190,9 @@ func refillColumns():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(delta):
-	if state == move:
-		touchInput(); 
+	#if state == move:
+	#	touchInput(); 
+	touchInput(); 
 	pass; 
 
 
@@ -211,5 +212,5 @@ func _on_collapseTimer_timeout():
 func _on_refill_timeout():
 	refillColumns(); 
 	get_parent().get_node("refill").stop();
-	state = move; 
+	#state = move; 
 	pass # Replace with function body.
